@@ -301,7 +301,7 @@ If the answer is not found in the document, then say:
 'I can't find the answer in the uploaded documents.'
 Do not use outside knowledge.
 
-Conversation History:
+Conversation History:5
 {memory_context}
 
 Document Context:
