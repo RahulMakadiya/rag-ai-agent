@@ -17,3 +17,7 @@ __pycache__/
 
 # OS files
 .DS_Store
+
+# Generated data (vectorstore and conversation memory)
+vectorstore/
+data/
