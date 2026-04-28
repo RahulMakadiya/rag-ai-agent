@@ -267,19 +267,21 @@ def agent_decision(query):
     
     try:
         prompt = f"""
-You are an AI assistant deciding how to answer a question.
+You are an AI assistant helping users with questions about their uploaded documents.
 
-Choose one action:
+Choose exactly one action from the list below:
 
-SEARCH_DOCUMENTS
-USE_MEMORY
-ASK_CLARIFICATION
-DIRECT_ANSWER
+SEARCH_DOCUMENTS - Use this when the question is about the content, topic, summary, or details of the uploaded documents. Use this for ANY question about what the documents say or contain.
+USE_MEMORY - Use this ONLY for follow-up questions that refer to something already discussed (e.g. "what did you mean by that?").
+ASK_CLARIFICATION - Use this ONLY when the question is too vague to understand at all.
+DIRECT_ANSWER - Use this ONLY for completely general questions unrelated to any document (e.g. "what is 2+2?").
+
+IMPORTANT: If there is any chance the question relates to uploaded documents, choose SEARCH_DOCUMENTS.
 
 Question:
 {query}
 
-Action:
+Action (respond with one word only):
 """
 
         decision = str(llm.invoke(prompt)).strip().upper()

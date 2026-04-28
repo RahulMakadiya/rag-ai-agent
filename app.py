@@ -99,9 +99,6 @@ if st.session_state.vector_retriever and st.session_state.documents_processed:
                     if "ASK_CLARIFICATION" in action:
                         status.update(label="Need clarification", state="complete")
 
-                    elif "DIRECT_ANSWER" in action:
-                        status.update(label="Answering directly...", state="complete")
-
                     else:
                         st.write("✓ Will search documents")
 
@@ -135,8 +132,7 @@ if st.session_state.vector_retriever and st.session_state.documents_processed:
 
                 elif "DIRECT_ANSWER" in action:
                     st.subheader("💡 Answer")
-                    direct_prompt = f"Answer this question:\n\n{query}\n\nAnswer:"
-                    full_response = st.write_stream(stream_response(direct_prompt))
+                    full_response = st.write_stream(stream_response(prompt if prompt else f"Answer this question:\n\n{query}\n\nAnswer:"))
                     save_to_memory(query, full_response)
 
                 elif not docs:
